@@ -1,0 +1,28 @@
+import PropTypes from "prop-types";
+
+export function Statistics({title, stats}) {
+    return (
+        <section className="statistics">
+            {title && <h2 className='s.title'>{title}</h2>}
+            <ul className='s.list'>
+                {stats.map((stat) => (
+                    <li className='s.item' key={stat.id}>
+                        <span className='s.label'>{stat.label}</span>
+                        <span className='s.percent'>{stat.percentage}%</span>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    );
+}
+
+Statistics.propTypes = {
+    title: PropTypes.string.isRequired,
+    stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ),
+};
